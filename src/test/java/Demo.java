@@ -27,18 +27,21 @@ public class Demo {
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(APP_URL);
+        System.out.println("setUp ok ");
     }
 
     @Test
     public void assertTitle(){
         String expectedTitle = "Learn with";
         Assert.assertTrue(driver.getTitle().contains(expectedTitle));
+        System.out.println("dang chay ");
     }
 
     @AfterMethod
     public void tearDown(){
         if(driver != null) {
             driver.quit();
+            System.out.println("thoat ");
         }
     }
 }
