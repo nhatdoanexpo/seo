@@ -1,6 +1,8 @@
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,6 +17,11 @@ public class Demo {
     WebDriver driver;
     static final String APP_URL = "https://qa-automation-practice.netlify.app/";
     static final String HOST_URL = "http://localhost:4444/wd/hub";
+
+
+    @FindBy(linkText = "Log in")
+    WebElement linkLogin;
+
 
     @BeforeMethod
     public void setUp(){
