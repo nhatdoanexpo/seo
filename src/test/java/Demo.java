@@ -30,7 +30,7 @@ public class Demo {
 
     @BeforeMethod
     public void setUp(){
-           // dev   System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/src/test/resources/chromedriver.exe");
+        // dev   System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/src/test/resources/chromedriver.exe");
 
         ChromeOptions opt = new ChromeOptions();
         try {
@@ -39,7 +39,7 @@ public class Demo {
             opt.addArguments("--user-agent="+AGENT);
             driver = new RemoteWebDriver(new URL(HOST_URL), opt);
             //dev  driver = new ChromeDriver(opt);
-          driver.manage().window().setSize(new Dimension(1366,768));
+            driver.manage().window().setSize(new Dimension(1366,768));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,18 +50,18 @@ public class Demo {
 
     @Test
     public void searchKeyWord(){
-       if(driver.getCurrentUrl().contains(APP_URL)){
-           System.out.println("dang chay bắt đầu search");
-           WebElement inputSearch  = waitForElement(By.xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input"));
+        if(driver.getCurrentUrl().contains(APP_URL)){
+            System.out.println("dang chay bắt đầu search");
+            WebElement inputSearch  = waitForElement(By.xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input"));
 
-          if(inputSearch.isDisplayed()){
-             // sendKeyInput(inputSearch,"phan mem vetgo");
-              typeInField(inputSearch,"Phan mem vetgo");
-          }
-           findLinkAndViewWeb();
+            if(inputSearch.isDisplayed()){
+                // sendKeyInput(inputSearch,"phan mem vetgo");
+                typeInField(inputSearch,"Phan mem vetgo");
+            }
+            findLinkAndViewWeb();
 
 
-       }
+        }
 
     }
 
@@ -87,7 +87,7 @@ public class Demo {
 
                 viewFB();
 
-              }catch (Exception e){
+            }catch (Exception e){
 
             }
 
@@ -100,7 +100,7 @@ public class Demo {
         System.out.println("viewFB "+driver.getCurrentUrl());
         if(driver.getCurrentUrl().toLowerCase().contains("vetgo.vn")){
             System.out.println("Đang kiếm link fb");
-           WebElement  findElements = waitForElement(By.linkText("GIỚI THIỆU"));
+            WebElement  findElements = waitForElement(By.linkText("GIỚI THIỆU"));
             moveMouseclickLink(findElements);
             scroll(10);
 
