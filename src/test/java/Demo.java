@@ -11,9 +11,11 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class Demo {
+
     WebDriver driver;
     static final String APP_URL = "https://qa-automation-practice.netlify.app/";
     static final String HOST_URL = "http://localhost:4444/wd/hub";
+
     @BeforeMethod
     public void setUp(){
         ChromeOptions opt = new ChromeOptions();
