@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="C:/Users/Admin/Documents/Backup_code/seo/src/test/java/Demo.java">
+    <test verbose="2" preserve-order="true" name="testDemo">
         <classes>
             <class name="Demo">
                 <methods>
-                    <include name="assertTitle"/>
+                    <include name="searchKeyWord"/>
                 </methods>
             </class>
         </classes>
