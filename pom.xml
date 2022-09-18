@@ -7,7 +7,7 @@
     <artifactId>seo</artifactId>
     <version>1.0-SNAPSHOT</version>
    <properties>
-       <maven-compiler-plugin-version>3.6.3</maven-compiler-plugin-version>
+       <maven-compiler-plugin-version>4.0.0</maven-compiler-plugin-version>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
   </properties>
@@ -39,6 +39,7 @@
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
+            <version>${maven-compiler-plugin-version}</version>
             <configuration>
                 <suiteXmlFiles>
                     <suiteXmlFile>testng.xml</suiteXmlFile>
