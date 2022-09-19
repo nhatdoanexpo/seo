@@ -77,9 +77,9 @@ public class Demo {
             File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             String newName = "image/screenshot"+new Date().getTime() +".jpg";
             FileUtils.copyFile(screenshot, new File(newName));
-            System.out.print("Screenshot is captured and stored in "+newName);
+            System.out.println("Screenshot is captured and stored in "+newName);
         }catch (Exception e){
-            System.out.print("fail" +e.getMessage());
+            System.out.println("fail" +e.getMessage());
         }
 
     }
