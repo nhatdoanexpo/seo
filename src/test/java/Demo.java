@@ -1,3 +1,4 @@
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -11,10 +12,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -30,15 +34,17 @@ public class Demo {
 
     @BeforeMethod
     public void setUp(){
-        // dev   System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/src/test/resources/chromedriver.exe");
+        // dev
+        //System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/src/test/resources/chromedriver.exe");
 
         ChromeOptions opt = new ChromeOptions();
         try {
             opt.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
             opt.setExperimentalOption("useAutomationExtension", false);
             opt.addArguments("--user-agent="+AGENT);
-            driver = new RemoteWebDriver(new URL(HOST_URL), opt);
-            //dev  driver = new ChromeDriver(opt);
+           driver = new RemoteWebDriver(new URL(HOST_URL), opt);
+            //dev
+           // driver = new ChromeDriver(opt);
             driver.manage().window().setSize(new Dimension(1366,768));
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,21 +59,34 @@ public class Demo {
         if(driver.getCurrentUrl().contains(APP_URL)){
             System.out.println("dang chay bắt đầu search");
             WebElement inputSearch  = waitForElement(By.xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input"));
-
+            screenshot();
             if(inputSearch.isDisplayed()){
                 // sendKeyInput(inputSearch,"phan mem vetgo");
                 typeInField(inputSearch,"Phan mem vetgo");
             }
-            findLinkAndViewWeb();
+             findLinkAndViewWeb();
 
 
         }
 
     }
+    public void screenshot ()
+    {
+        try {
+            //Capture entire page screenshot and then store it to destination drive
+            File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            String newName = "image/screenshot"+new Date().getTime() +".jpg";
+            FileUtils.copyFile(screenshot, new File(newName));
+            System.out.print("Screenshot is captured and stored in "+newName);
+        }catch (Exception e){
+            System.out.print("fail" +e.getMessage());
+        }
 
+    }
 
     public void findLinkAndViewWeb(){
         System.out.println("findLinkAndViewWeb");
+        screenshot();
         if(driver.getTitle().toLowerCase().contains("tìm trên google")){
             System.out.println("Đang kiếm link");
             scroll(5);
@@ -98,7 +117,9 @@ public class Demo {
     private void viewFB() {
 
         System.out.println("viewFB "+driver.getCurrentUrl());
+        screenshot();
         if(driver.getCurrentUrl().toLowerCase().contains("vetgo.vn")){
+
             System.out.println("Đang kiếm link fb");
             WebElement  findElements = waitForElement(By.linkText("GIỚI THIỆU"));
             moveMouseclickLink(findElements);
